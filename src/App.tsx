@@ -1,5 +1,11 @@
+import TestCanvas from './components/TestCanvas';
+
 function App() {
-  return <div>hello three</div>;
+  return (
+    <>
+      <TestCanvas></TestCanvas>
+    </>
+  );
 }
 
 export default App;
