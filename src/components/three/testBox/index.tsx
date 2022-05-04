@@ -1,12 +1,18 @@
 interface Props {
   boxColor: string
+  opacity?: number
 }
 
-const Box = ({ boxColor }: Props) => {
+const Box = ({ boxColor, opacity }: Props) => {
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh rotation={[0.2, 0.3, 0.1]} scale={1.5} castShadow receiveShadow>
       <boxBufferGeometry attach='geometry' />
-      <meshLambertMaterial attach='material' color={boxColor} />
+      <meshLambertMaterial
+        attach='material'
+        color={boxColor}
+        opacity={opacity}
+        transparent
+      />
     </mesh>
   )
 }
