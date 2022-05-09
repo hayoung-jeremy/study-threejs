@@ -10,6 +10,7 @@ import Unity, { UnityContext } from 'react-unity-webgl'
 // custom
 import { Button, Layout } from './components/ui'
 import { ProductContainer, ProductGrid } from './components/ui/productUI'
+import { TestScene } from './components/unityWebgl'
 
 const availableColor = [
   { colorTheme: 'white', hexValue: '#ffffff' },
@@ -29,6 +30,7 @@ const App = () => {
             <TestCharacter color={boxColor} />
           </CanvasContainer>
         </ProductContainer>
+        <TestScene />
         <article className='px-5 py-5'>
           <div className='flex flex-col gap-3 mb-5'>
             <p className='text-3xl font-bold'>
