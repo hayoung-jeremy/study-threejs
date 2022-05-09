@@ -1,5 +1,13 @@
-import { useState } from 'react'
-import { Box, CanvasContainer } from './components/three'
+// react
+import { useEffect, useState } from 'react'
+
+// three
+import { Box, CanvasContainer, TestCharacter } from './components/three'
+
+// webgl
+import Unity, { UnityContext } from 'react-unity-webgl'
+
+// custom
 import { Button, Layout } from './components/ui'
 import { ProductContainer, ProductGrid } from './components/ui/productUI'
 
@@ -17,7 +25,8 @@ const App = () => {
       <ProductGrid>
         <ProductContainer>
           <CanvasContainer>
-            <Box boxColor={boxColor} />
+            {/* <Box boxColor={boxColor} /> */}
+            <TestCharacter color={boxColor} />
           </CanvasContainer>
         </ProductContainer>
         <article className='px-5 py-5'>
