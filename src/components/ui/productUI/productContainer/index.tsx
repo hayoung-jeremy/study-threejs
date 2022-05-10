@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 interface Props {
   children: React.ReactNode | any
@@ -6,7 +6,9 @@ interface Props {
 
 const ProductContainer = ({ children }: Props) => {
   return (
-    <div className='rounded-2xl overflow-hidden bg-slate-100'>{children}</div>
+    <div className="rounded-2xl overflow-hidden bg-transparent relative">
+      {children}
+    </div>
   )
 }
 

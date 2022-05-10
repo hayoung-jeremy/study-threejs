@@ -1,3 +1,3 @@
-export { default as CanvasContainer } from './canvasContainer'
-export { default as Box } from './testBox'
-export { default as TestCharacter } from './testCharacter'
+export { default as CanvasContainer } from "./CanvasContainer"
+export { default as Box } from "./TestBox"
+export { default as TestCharacter } from "./TestCharacter"

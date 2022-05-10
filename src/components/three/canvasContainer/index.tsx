@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
+import React, { Suspense } from "react"
+import { Canvas } from "@react-three/fiber"
 import {
   ContactShadows,
   OrbitControls,
   PerspectiveCamera,
-} from '@react-three/drei'
-import './style.css'
-import * as THREE from 'three'
+} from "@react-three/drei"
+import "./style.css"
+import * as THREE from "three"
 
 const axesHelper = new THREE.AxesHelper(50)
 
