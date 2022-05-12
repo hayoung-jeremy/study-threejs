@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react"
 
 // three
-import { Box, CanvasContainer, TestCharacter } from "./components/three"
-
-// webgl
-import Unity, { UnityContext } from "react-unity-webgl"
+import {
+  Box,
+  CanvasContainer,
+  TestCharacter,
+  TestObjScene,
+} from "./components/three"
 
 // custom
 import { Button, Layout } from "./components/ui"
@@ -28,10 +30,11 @@ const App = () => {
           <div className="absolute top-0 left-0 w-full h-full">
             <CanvasContainer>
               {/* <Box boxColor={boxColor} /> */}
-              {/* <TestCharacter color={boxColor} /> */}
+              <TestCharacter />
+              {/* <TestObjScene /> */}
             </CanvasContainer>
           </div>
-          <TestScene />
+          {/* <TestScene /> */}
         </ProductContainer>
         <article className="px-5 py-5">
           <div className="flex flex-col gap-3 mb-5">

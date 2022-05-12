@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+public/build/test.data
+public/build/test.framework.js
+public/build/test.loader.js
+public/build/test.wasm

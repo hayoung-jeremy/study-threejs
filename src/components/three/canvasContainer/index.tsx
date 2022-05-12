@@ -17,21 +17,19 @@ interface Props {
 const CanvasContainer = ({ children }: Props) => {
   return (
     <Canvas>
-      <OrbitControls autoRotate />
+      <OrbitControls />
       <ambientLight intensity={0.3} />
       <spotLight position={[200, 250, 200]} angle={0.6} />
       <PerspectiveCamera fov={75} position={[0, 0, 10]} near={0.1} far={1000} />
-      <Suspense fallback={null}>
-        {children}
-        <ContactShadows
-          position={[0, -1, 0]}
-          opacity={0.8}
-          width={10}
-          height={10}
-          blur={0.5}
-          far={1000}
-        />
-      </Suspense>
+      <Suspense fallback={null}>{children}</Suspense>
+      <ContactShadows
+        position={[0, -1, 0]}
+        opacity={0.8}
+        width={10}
+        height={10}
+        blur={0.5}
+        far={1000}
+      />
     </Canvas>
   )
 }
