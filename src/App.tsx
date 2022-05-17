@@ -5,7 +5,8 @@ import { useEffect, useState } from "react"
 import {
   Box,
   CanvasContainer,
-  TestCharacter,
+  FbxModel,
+  GltfModel,
   TestObjScene,
 } from "./components/three"
 
@@ -27,13 +28,12 @@ const App = () => {
     <Layout>
       <ProductGrid>
         <ProductContainer>
-          <div className="absolute top-0 left-0 w-full h-full">
-            <CanvasContainer>
-              {/* <Box boxColor={boxColor} /> */}
-              <TestCharacter />
-              {/* <TestObjScene /> */}
-            </CanvasContainer>
-          </div>
+          <CanvasContainer>
+            {/* <Box boxColor={boxColor} /> */}
+            <GltfModel />
+            {/* <TestObjScene /> */}
+          </CanvasContainer>
+          {/* <div className="absolute top-0 left-0 w-full h-full"></div> */}
           {/* <TestScene /> */}
         </ProductContainer>
         <article className="px-5 py-5">
