@@ -6,7 +6,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <main className="w-screen h-screen flex justify-center items-center bg-[url('/img/bg.jpg')]">
+    <main className="w-screen h-screen flex justify-center items-center bg-[url('/img/bg.webp')]">
       {children}
     </main>
   )

@@ -44,16 +44,20 @@ const App = () => {
         <article className="px-5 py-5">
           <div className="flex flex-col gap-3 mb-5">
             <p className="text-3xl font-bold">
-              <span className="text-gray-500">Product name : </span>
-              <span className="text-gray-800">Demo</span>
+              <span className="text-[rgba(255,255,255,.4)]">
+                Product name :{" "}
+              </span>
+              <span className="text-[rgba(255,255,255,.8)]">Demo</span>
             </p>
             <p className="text-3xl font-bold">
-              <span className="text-gray-500">Price : </span>
-              <span className="text-gray-800">40$</span>
+              <span className="text-[rgba(255,255,255,.4)]">Price : </span>
+              <span className="text-[rgba(255,255,255,.8)]">40$</span>
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-semibold text-gray-700">colors : </span>
+            <span className="font-semibold text-[rgba(255,255,255,.4)]">
+              colors :{" "}
+            </span>
             {availableColor.map((item, index) => {
               return (
                 <Button key={index} onClick={() => setBoxColor(item.hexValue)}>
