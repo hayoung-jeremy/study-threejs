@@ -6,7 +6,7 @@ interface Props {
 
 const ProductContainer = ({ children }: Props) => {
   return (
-    <div className="rounded-2xl overflow-hidden bg-transparent relative">
+    <div className="box-border border border-[rgba(255,255,255,.2)] rounded-2xl overflow-hidden bg-transparent relative shadow-lg">
       {children}
     </div>
   )
