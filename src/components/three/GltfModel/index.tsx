@@ -1,8 +1,9 @@
 import React, { Suspense, useState } from "react"
 import { useLoader } from "@react-three/fiber"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { Cloud, Environment } from "@react-three/drei"
 
-const GltfModel = () => {
+const GltfModel = (props: any) => {
   const gltf = useLoader(GLTFLoader, "/char/adam/adamHead.gltf")
 
   //   console.log("gltf >>>>>>>>>>>>>>", gltf)
@@ -23,8 +24,10 @@ const GltfModel = () => {
   return (
     <Suspense fallback={null}>
       <primitive
-        position={[0, 0, 0]}
+        
+        rotation={[0, Math.PI, 0]}
         object={gltf.scene}
+        {...props}
         // currentColor={currentColor}
         // onPointerUp={(e: any) => console.log("up")}
         // onPointerDown={(e: any) => console.log("down")}
@@ -32,12 +35,12 @@ const GltfModel = () => {
         // onDoubleClick={(e: any) => console.log("double click")}
         // onWheel={(e: any) => console.log("wheel spins")}
         // onPointerMove={(e: any) => console.log("move")}
-        onPointerOver={onMaterialOver}
-        onPointerOut={onMaterialOut}
+        // onPointerOver={onMaterialOver}
+        // onPointerOut={onMaterialOut}
         // onPointerLeave={(e: any) => console.log("leave")}
         // onPointerEnter={(e: any) => console.log("enter")}
         // onPointerOut={(e: any) => console.log("out")}
-        onContextMenu={(e: any) => console.log("context menu")}
+        // onContextMenu={(e: any) => console.log("context menu")}
         // onPointerMissed={() => console.log("missed")}
         onUpdate={(self: any) => console.log("props have been updated", self)}
         // rotation={isHovered ? [0, Math.PI, 0] : [0, 0, 0]}

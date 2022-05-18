@@ -1,19 +1,19 @@
 // react
+import { Center, OrbitControls } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
 import { useEffect, useState } from "react"
 
 // three
 import {
-  Box,
   CanvasContainer,
-  FbxModel,
   GltfModel,
-  TestObjScene,
+  PFPCard,
+  MagicMirror,
 } from "./components/three"
 
 // custom
 import { Button, Layout } from "./components/ui"
 import { ProductContainer, ProductGrid } from "./components/ui/productUI"
-import { TestScene } from "./components/unityWebgl"
 
 const availableColor = [
   { colorTheme: "white", hexValue: "#ffffff" },
@@ -28,13 +28,18 @@ const App = () => {
     <Layout>
       <ProductGrid>
         <ProductContainer>
-          <CanvasContainer>
-            {/* <Box boxColor={boxColor} /> */}
-            <GltfModel />
-            {/* <TestObjScene /> */}
-          </CanvasContainer>
-          {/* <div className="absolute top-0 left-0 w-full h-full"></div> */}
-          {/* <TestScene /> */}
+          <Canvas
+            dpr={window.devicePixelRatio}
+            className=" backdrop-blur-[4px] bg-[rgba(255,255,255,.05)]"
+          >
+            {/* <MagicMirror>
+              <ambientLight intensity={1} />
+              <pointLight position={[20, 30, 10]} />
+              <GltfModel scale={0.8} enableZoom={false} position={[0, 0, -2]} />
+            </MagicMirror> */}
+            {/* <PFPCard /> */}
+            <OrbitControls enableZoom={false} />
+          </Canvas>
         </ProductContainer>
         <article className="px-5 py-5">
           <div className="flex flex-col gap-3 mb-5">
