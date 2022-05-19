@@ -24,7 +24,6 @@ const GltfModel = (props: any) => {
   return (
     <Suspense fallback={null}>
       <primitive
-        
         rotation={[0, Math.PI, 0]}
         object={gltf.scene}
         {...props}

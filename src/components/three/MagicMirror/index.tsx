@@ -26,15 +26,17 @@ const MagicMirror = ({ children, ...props }: Props) => {
     // And flip the render-target to the default again
     state.gl.setRenderTarget(null)
   })
+  console.log(scene)
   return (
     <>
       <RoundedBox
         scale={[4, 6, 0.05]}
         position={[0, 0, 0]}
-        radius={0.05}
-        smoothness={1}
+        radius={0.025}
+        // smoothness={1}
         {...props}
       >
+        {/* <boxBufferGeometry attach="geometry" args={[4, 6, 0.05]} /> */}
         {/* The "mirror" is just a boring plane, but it receives the buffer texture */}
         <meshBasicMaterial map={fbo.texture} />
       </RoundedBox>
