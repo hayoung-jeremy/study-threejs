@@ -26,7 +26,7 @@ const HelperSettings = () => {
   return (
     <>
       {/* camera */}
-      <PerspectiveCamera ref={camera} position={[0, 0, 10]} />
+      <PerspectiveCamera position={[0, 0, 10]} />
 
       {/* control */}
       <OrbitControls enableZoom={false} />
