@@ -1,14 +1,18 @@
 // react
-import { Center, OrbitControls, Stats } from "@react-three/drei"
-import { Canvas } from "@react-three/fiber"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 // three
-import { GltfModel, PFPCard, MagicMirror } from "./components/three"
+import { Canvas } from "@react-three/fiber"
 
 // custom
 import { Button, Layout } from "./components/ui"
-import { ProductContainer, ProductGrid } from "./components/ui/productUI"
+import { CardPreviewContainer, ProductGrid } from "./components/ui/productUI"
+import {
+  GltfModel,
+  PFPCard,
+  MagicMirror,
+  HelperSettings,
+} from "./components/three"
 import { availableImgURL, availableColor } from "./data/availableData"
 
 const App = () => {
@@ -22,13 +26,12 @@ const App = () => {
   return (
     <Layout>
       <ProductGrid>
-        <ProductContainer>
+        <CardPreviewContainer>
           <Canvas
             dpr={window.devicePixelRatio}
             className=" backdrop-blur-[4px] bg-[rgba(255,255,255,.05)]"
           >
-            <ambientLight position={[0, 0, 0]} intensity={1} />
-            <pointLight position={[20, 30, 10]} />
+            <HelperSettings />
             {isTabSelected === 0 && (
               <MagicMirror>
                 <ambientLight position={[0, 0, 0]} intensity={1} />
@@ -39,12 +42,8 @@ const App = () => {
             {isTabSelected === 1 && (
               <PFPCard imgURL={imgURL} color={cardColor} />
             )}
-            <OrbitControls enableZoom={false} />
-            <Stats />
-            {/* <axesHelper />
-            <gridHelper /> */}
           </Canvas>
-        </ProductContainer>
+        </CardPreviewContainer>
         <article className="flex flex-col gap-4 px-5 py-5">
           <div className="flex gap-3 border-b border-b-[rgba(255,255,255,0.2)] pb-6">
             {tabMenu.map((item, index) => {
