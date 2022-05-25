@@ -26,38 +26,50 @@ const HelperSettings = () => {
   return (
     <>
       {/* camera */}
-      <PerspectiveCamera position={[0, 0, 10]} />
+      <PerspectiveCamera
+        makeDefault
+        position={[0, 1, 1.5]}
+        // ref={camera}
+        rotation={[0, 0, 0]}
+        fov={75}
+      />
 
       {/* control */}
-      <OrbitControls enableZoom={false} />
+      <OrbitControls
+      // enableZoom={false}
+      // minPolarAngle={Math.PI}
+      // maxPolarAngle={Math.PI}
+      />
 
       {/* light */}
-      <ambientLight position={[1, 3, 0.8]} />
-      <directionalLight
+      <ambientLight intensity={0.4} />
+      {/* <directionalLight
         position={[1, 3, 1.8]}
         intensity={0.5}
         // ref={directionalLight}
         // color="white"
-      />
+      /> */}
 
-      <pointLight
-        position={[3, 0, -1]}
-        // ref={pointLight1}
+      {/* <pointLight
+        position={[5, 0, -1]}
+        ref={pointLight1}
         color="red"
         intensity={1}
-      />
+      /> */}
 
       <spotLight
         // ref={spotLight}
-        position={[-3, 4, 1]}
-        color="purple"
-        intensity={2}
+        position={[1, 2, 0]}
+        // color="red"
+        intensity={0.4}
+        scale={0.1}
+        angle={0.8}
       />
 
       {/* helper */}
-      {/* <axesHelper />
+      {/* <axesHelper /> */}
       <gridHelper />
-      <Stats /> */}
+      <Stats />
     </>
   )
 }

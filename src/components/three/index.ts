@@ -1,5 +1,4 @@
 export { default as HelperSettings } from "./HelperSettings"
-export { default as FbxModel } from "./FbxModel"
 export { default as GltfModel } from "./GltfModel"
 export { default as TestObjScene } from "./TestObjScene"
 export { default as PFPCard } from "./PFPCard"
