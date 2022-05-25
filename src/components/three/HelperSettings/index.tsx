@@ -28,21 +28,25 @@ const HelperSettings = () => {
       {/* camera */}
       <PerspectiveCamera
         makeDefault
-        position={[0, 1, 1.5]}
+        position={[0, 0, 5.6]}
         // ref={camera}
         rotation={[0, 0, 0]}
-        fov={75}
+        fov={40}
       />
 
       {/* control */}
       <OrbitControls
-      // enableZoom={false}
-      // minPolarAngle={Math.PI}
-      // maxPolarAngle={Math.PI}
+        // enableZoom={false}
+        // minPolarAngle={Math.PI}
+        // maxPolarAngle={Math.PI}
+        minPolarAngle={0}
+        maxPolarAngle={Math.PI / 2.1}
+        minDistance={1} // 최대 얼만큼 zoom in 할 수 있는지
+        maxDistance={8} // 최대 얼만큼 zoom out 할 수 있는지
       />
 
       {/* light */}
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.15} />
       {/* <directionalLight
         position={[1, 3, 1.8]}
         intensity={0.5}
@@ -59,17 +63,18 @@ const HelperSettings = () => {
 
       <spotLight
         // ref={spotLight}
-        position={[1, 2, 0]}
+        position={[1.5, 1.6, 4.3]}
         // color="red"
-        intensity={0.4}
-        scale={0.1}
-        angle={0.8}
+        intensity={0.37}
+        scale={0.8}
+        angle={0.5}
+        castShadow
       />
 
       {/* helper */}
       {/* <axesHelper /> */}
-      <gridHelper />
-      <Stats />
+      {/* <gridHelper /> */}
+      {/* <Stats /> */}
     </>
   )
 }

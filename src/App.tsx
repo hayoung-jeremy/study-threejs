@@ -1,5 +1,5 @@
 // react
-import { useRef, useState } from "react"
+import { Suspense, useRef, useState } from "react"
 
 // three
 import { Canvas } from "@react-three/fiber"
@@ -15,12 +15,18 @@ import {
 } from "./components/three"
 import { availableImgURL, availableColor } from "./data/availableData"
 import {
+  Center,
   ContactShadows,
+  Environment,
+  GradientTexture,
+  Html,
+  MeshReflectorMaterial,
   OrbitControls,
   PerspectiveCamera,
   useHelper,
 } from "@react-three/drei"
 import { CameraHelper } from "three"
+import { cls } from "./utils/utils"
 
 const App = () => {
   const [cardColor, setCardColor] = useState("#000")
@@ -34,29 +40,96 @@ const App = () => {
 
   const tabMenu = [{ menuTitle: "3D model" }, { menuTitle: "character image" }]
   return (
-    <main className="w-screen h-screen flex justify-center items-center">
+    <main
+      className={cls(
+        "w-screen h-screen flex justify-center items-center"
+        // "bg-[url('img/bg_stage.jpg')] bg-[length:50%] bg-bottom bg-no-repeat"
+      )}
+    >
       <Canvas
-        dpr={window.devicePixelRatio}
-        className=" backdrop-blur-[4px] bg-[rgba(255,255,255,1)]"
+        // gl={{ toneMappingExposure: 0.4 }}
+        className={cls(
+          // "backdrop-blur-[4px] bg-[#f9f9f9] relative",
+          "bg-gradient-to-t from-[#ccc] via-[#eee] to-[#f9f9f9]"
+        )}
       >
-        <GltfModel
-          scale={0.005}
-          // enableZoom={false}
-          position={[0, -0.02, 0]}
-          rotation={[0, 0, 0]}
-        />
-        {/* settings */}
-        {/* <PerspectiveCamera position={[0, Math.PI, 0]} /> */}
-        {/* <ambientLight /> */}
-        {/* <OrbitControls /> */}
-        <ContactShadows
-          far={10}
-          width={1.5}
-          height={1.2}
-          blur={0.4}
-          position={[0, 0, 0]}
-        />
-        {/* <gridHelper /> */}
+        <Suspense fallback={null}>
+          {/* <Environment
+            background
+            files={["img/Flourecent-Lights.jpg"]}
+            path={"/"}
+            // preset={"studio"}
+            // ground={{ height: 5, radius: 40, scale: 10 }}
+          /> */}
+          <GltfModel
+            scale={0.02}
+            // enableZoom={false}
+            position={[0, -2, 0]}
+            rotation={[0, 0, 0]}
+          />
+          <Html position={[1, 1.5, 0]}>
+            <aside className="w-[380px]">
+              <div
+                className={cls(
+                  "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
+                  "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
+                )}
+              >
+                <a href="https://www.fendi.com/kr-ko/fendace">see collection</a>
+              </div>
+            </aside>
+          </Html>
+          <Html>
+            <div className="w-48 absolute top-[-450px] left-[-940px]">
+              <img
+                className="w-full"
+                src="/img/fendace-ss22-logo-data.webp"
+                alt="fendace logo"
+              />
+            </div>
+          </Html>
+          <ContactShadows
+            far={5}
+            scale={10}
+            width={1.5}
+            height={1.2}
+            opacity={0.8}
+            blur={0.6}
+            position={[0, -1.9, 0]}
+          />
+          <mesh
+            scale={[2, 3, 1]}
+            position={[0, -2, 0]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          >
+            <planeGeometry args={[20, 20]} />
+
+            <MeshReflectorMaterial
+              metalness={0.5}
+              roughness={1}
+              blur={[300, 100]} // Blur ground reflections (width, heigt), 0 skips blur
+              mixBlur={0.9} // How much blur mixes with surface roughness (default = 1)
+              mixStrength={20} // Strength of the reflections
+              mixContrast={1} // Contrast of the reflections
+              resolution={256} // Off-buffer resolution, lower=faster, higher=better quality, slower
+              mirror={0.2} // Mirror environment, 0 = texture colors, 1 = pick up env colors
+              depthScale={0.2} // Scale the depth factor (0 = no depth, default = 0)
+              minDepthThreshold={0.2} // Lower edge for the depthTexture interpolation (default = 0)
+              maxDepthThreshold={5.2} // Upper edge for the depthTexture interpolation (default = 0)
+              depthToBlurRatioBias={0.25} // Adds a bias factor to the depthTexture before calculating the blur amount [blurFactor = blurTexture * (depthTexture + bias)]. It accepts values between 0 and 1, default is 0.25. An amount > 0 of bias makes sure that the blurTexture is not too sharp because of the multiplication with the depthTexture
+              distortion={0.2} // Amount of distortion based on the distortionMap texture
+              reflectorOffset={0.01} // Offsets the virtual camera that projects the reflection. Useful when the reflective surface is some distance from the object's origin (default = 0)
+              color="#555"
+              transparent
+              opacity={0.02}
+            />
+          </mesh>
+          {/* settings */}
+          {/* <PerspectiveCamera position={[0, Math.PI, 0]} /> */}
+          {/* <ambientLight /> */}
+          {/* <OrbitControls /> */}
+          {/* <gridHelper /> */}
+        </Suspense>
         <HelperSettings />
       </Canvas>
     </main>
