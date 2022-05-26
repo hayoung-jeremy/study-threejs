@@ -30,6 +30,8 @@ const App = () => {
   const [isColorSelected, setIsColorSelected] = useState(0)
   const [isImgSelected, setIsImgSelected] = useState(0)
 
+  const [isClicked, setIsClicked] = useState(true)
+
   // const camera = useRef<THREE.PerspectiveCamera>()
   // useHelper(camera, CameraHelper)
 
@@ -49,13 +51,6 @@ const App = () => {
         )}
       >
         <Suspense fallback={null}>
-          {/* <Environment
-            background
-            files={["img/Flourecent-Lights.jpg"]}
-            path={"/"}
-            // preset={"studio"}
-            // ground={{ height: 5, radius: 40, scale: 10 }}
-          /> */}
           {/* <GltfModel
             scale={0.02}
             // enableZoom={false}
@@ -69,24 +64,28 @@ const App = () => {
             position={[0, -1.86, 0]}
             rotation={[0, 0, 0]}
           />
-          <Dress
-            scale={0.02}
-            // enableZoom={false}
-            position={[0, -1.86, 0]}
-            rotation={[0, 0, 0]}
-          />
-          {/* <Html position={[1, 1.5, 0]}>
+          {isClicked && (
+            <Dress
+              scale={0.02}
+              // enableZoom={false}
+              position={[0, -1.86, 0]}
+              rotation={[0, 0, 0]}
+            />
+          )}
+          <Html position={[1, 1.5, 0]}>
             <aside className="w-[380px]">
               <div
                 className={cls(
                   "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
                   "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
                 )}
+                onClick={() => setIsClicked(!isClicked)}
               >
-                <a href="https://www.fendi.com/kr-ko/fendace">see collection</a>
+                {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
+                {isClicked ? "take off" : "put on"}
               </div>
             </aside>
-          </Html> */}
+          </Html>
 
           <ContactShadows far={5} scale={10} width={1.5} height={1.2} opacity={0.8} blur={0.6} position={[0, -1.9, 0]} />
           <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
