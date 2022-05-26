@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
   }
 }
 
-const AvatarOnClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
+const AvatarWithOutClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
   const group = useRef<THREE.Group>(null)
   const { nodes, materials } = useGLTF("/char/avatar_clothes/clothes.glb") as GLTFResult
   return (
@@ -106,12 +106,12 @@ const AvatarOnClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
       </group>
 
       {/* hair */}
-      <mesh
+      {/* <mesh
         geometry={nodes.F_HAIR_1030000.geometry}
         material={materials.NewMat03}
         rotation={[-Math.PI / 2, 0, 0]}
         castShadow
-      />
+      /> */}
 
       {/* dress */}
       {/* <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -126,15 +126,15 @@ const AvatarOnClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
       </group> */}
 
       {/* boots */}
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+      {/* <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh geometry={nodes.F_PRD_21FW_SH002_1.geometry} material={materials.NewMat10} castShadow />
         <mesh geometry={nodes.F_PRD_21FW_SH002_2.geometry} material={materials.NewMat10} castShadow />
         <mesh geometry={nodes.F_PRD_21FW_SH002_3.geometry} material={materials.NewMat10} castShadow />
-      </group>
+      </group> */}
     </group>
   )
 }
 
-useGLTF.preload("/clothes.glb")
+useGLTF.preload("/char/avatar_clothes/clothes.glb")
 
-export default AvatarOnClothes
+export default AvatarWithOutClothes

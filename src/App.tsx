@@ -23,7 +23,16 @@ import { CameraHelper, PCFSoftShadowMap } from "three"
 // custom
 import { Button, Layout } from "./components/ui"
 import { CardPreviewContainer, ProductGrid } from "./components/ui/productUI"
-import { GltfModel, PFPCard, MagicMirror, HelperSettings, AvatarOnClothes, Dress } from "./components/three"
+import {
+  GltfModel,
+  PFPCard,
+  MagicMirror,
+  HelperSettings,
+  AvatarWithOutClothes,
+  AvatarDress,
+  AvatarHair,
+  AvatarBoots,
+} from "./components/three"
 import { availableImgURL, availableColor } from "./data/availableData"
 import { cls } from "./utils/utils"
 
@@ -34,7 +43,9 @@ const App = () => {
   const [isColorSelected, setIsColorSelected] = useState(0)
   const [isImgSelected, setIsImgSelected] = useState(0)
 
-  const [isClicked, setIsClicked] = useState(true)
+  const [toggleHair, setToggleHair] = useState(true)
+  const [toggleDress, setToggleDress] = useState(true)
+  const [toggleBoots, setToggleBoots] = useState(true)
 
   // const camera = useRef<THREE.PerspectiveCamera>()
   // useHelper(camera, CameraHelper)
@@ -64,16 +75,11 @@ const App = () => {
             rotation={[0, 0, 0]}
           /> */}
 
-          <AvatarOnClothes
-            scale={0.02}
-            // enableZoom={false}
-            position={[0, -1.86, 0]}
-            rotation={[0, 0, 0]}
-            castShadow
-            receiveShadow
-          />
-          {isClicked && (
-            <Dress
+          <AvatarWithOutClothes scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />
+          {toggleHair && <AvatarHair scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
+          {toggleBoots && <AvatarBoots scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
+          {toggleDress && (
+            <AvatarDress
               scale={0.02}
               // enableZoom={false}
               position={[0, -1.86, 0]}
@@ -83,16 +89,36 @@ const App = () => {
             />
           )}
           <Html position={[1, 1.5, 0]}>
-            <aside className="w-[380px]">
+            <aside className="w-[380px] flex flex-col gap-2">
               <div
                 className={cls(
                   "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
                   "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
                 )}
-                onClick={() => setIsClicked(!isClicked)}
+                onClick={() => setToggleHair(!toggleHair)}
               >
                 {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
-                {isClicked ? "take off" : "put on"}
+                toggle hair
+              </div>
+              <div
+                className={cls(
+                  "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
+                  "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
+                )}
+                onClick={() => setToggleDress(!toggleDress)}
+              >
+                {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
+                toggle dress
+              </div>
+              <div
+                className={cls(
+                  "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
+                  "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
+                )}
+                onClick={() => setToggleBoots(!toggleBoots)}
+              >
+                {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
+                toggle boots
               </div>
             </aside>
           </Html>
@@ -105,7 +131,7 @@ const App = () => {
           <Plane receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]} args={[1000, 1000]}>
             <meshStandardMaterial attach="material" color="white" transparent opacity={0.4} />
           </Plane>
-          <fog attach="fog" args={["white", 0, 100]} />
+          <fog attach="fog" args={["white", 0, 1000]} />
           <ContactShadows
             far={3}
             scale={10}
