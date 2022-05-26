@@ -23,12 +23,12 @@ const AvatarDress = ({ ...props }: JSX.IntrinsicElements["group"]) => {
     <group ref={group} {...props} dispose={null}>
       {/* AvatarDress */}
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.F_AREA_21SS_D004_1.geometry} material={materials.NewMat09} />
-        <mesh geometry={nodes.F_AREA_21SS_D004_2.geometry} material={materials.NewMat09} />
-        <mesh geometry={nodes.F_AREA_21SS_D004_3.geometry} material={materials.NewMat09} />
-        <mesh geometry={nodes.F_AREA_21SS_D004_4.geometry} material={materials.NewMat09} />
-        <mesh geometry={nodes.F_AREA_21SS_D004_5.geometry} material={materials.NewMat09} />
-        <mesh geometry={nodes.F_AREA_21SS_D004_6.geometry} material={materials.NewMat09} />
+        <mesh geometry={nodes.F_AREA_21SS_D004_1.geometry} material={materials.NewMat09} castShadow />
+        <mesh geometry={nodes.F_AREA_21SS_D004_2.geometry} material={materials.NewMat09} castShadow />
+        <mesh geometry={nodes.F_AREA_21SS_D004_3.geometry} material={materials.NewMat09} castShadow />
+        <mesh geometry={nodes.F_AREA_21SS_D004_4.geometry} material={materials.NewMat09} castShadow />
+        <mesh geometry={nodes.F_AREA_21SS_D004_5.geometry} material={materials.NewMat09} castShadow />
+        <mesh geometry={nodes.F_AREA_21SS_D004_6.geometry} material={materials.NewMat09} castShadow />
       </group>
     </group>
   )
