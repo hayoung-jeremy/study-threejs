@@ -2,8 +2,10 @@
 import { Suspense, useRef, useState } from "react"
 
 // three
+import * as THREE from "three"
 import { Canvas } from "@react-three/fiber"
 import {
+  Box,
   Center,
   ContactShadows,
   Environment,
@@ -12,9 +14,11 @@ import {
   MeshReflectorMaterial,
   OrbitControls,
   PerspectiveCamera,
+  Plane,
+  softShadows,
   useHelper,
 } from "@react-three/drei"
-import { CameraHelper } from "three"
+import { CameraHelper, PCFSoftShadowMap } from "three"
 
 // custom
 import { Button, Layout } from "./components/ui"
@@ -45,10 +49,12 @@ const App = () => {
     >
       <Canvas
         // gl={{ toneMappingExposure: 0.4 }}
-        className={cls(
-          // "backdrop-blur-[4px] bg-[#f9f9f9] relative",
-          "bg-gradient-to-t from-[#ccc] via-[#eee] to-[#f9f9f9]"
-        )}
+        shadows
+        // onCreated={({ gl }) => {
+        //   gl.shadowMap.enabled = true
+        //   gl.shadowMap.type = THREE.PCFSoftShadowMap
+        // }}
+        // className={cls("backdrop-blur-[4px] bg-[#f9f9f9] relative", "bg-gradient-to-t from-[#ccc] via-[#eee] to-[#f9f9f9]")}
       >
         <Suspense fallback={null}>
           {/* <GltfModel
@@ -63,6 +69,8 @@ const App = () => {
             // enableZoom={false}
             position={[0, -1.86, 0]}
             rotation={[0, 0, 0]}
+            castShadow
+            receiveShadow
           />
           {isClicked && (
             <Dress
@@ -70,6 +78,8 @@ const App = () => {
               // enableZoom={false}
               position={[0, -1.86, 0]}
               rotation={[0, 0, 0]}
+              castShadow
+              receiveShadow
             />
           )}
           <Html position={[1, 1.5, 0]}>
@@ -87,9 +97,27 @@ const App = () => {
             </aside>
           </Html>
 
-          <ContactShadows far={5} scale={10} width={1.5} height={1.2} opacity={0.8} blur={0.6} position={[0, -1.9, 0]} />
-          <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-            <planeGeometry args={[20, 20]} />
+          {/* <ambientLight intensity={0.1} />
+          <directionalLight intensity={0.5} castShadow shadow-mapSize-height={512} shadow-mapSize-width={512} /> */}
+          {/* <Box castShadow receiveShadow position={[0, 0.5, 0]}>
+            <meshStandardMaterial attach="material" color="white" />
+          </Box> */}
+          <Plane receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]} args={[1000, 1000]}>
+            <meshStandardMaterial attach="material" color="white" transparent opacity={0.4} />
+          </Plane>
+          <fog attach="fog" args={["white", 0, 100]} />
+          <ContactShadows
+            far={3}
+            scale={10}
+            width={1.5}
+            height={1.2}
+            opacity={0.6}
+            blur={0.8}
+            position={[0, -1.89, 0]}
+            // receiveShadow
+          />
+          {/* <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} receiveShadow>
+            <planeGeometry args={[100, 100]} />
 
             <MeshReflectorMaterial
               metalness={0.5}
@@ -110,7 +138,8 @@ const App = () => {
               transparent
               opacity={0.02}
             />
-          </mesh>
+          </mesh> */}
+
           {/* settings */}
           {/* <PerspectiveCamera position={[0, Math.PI, 0]} /> */}
           {/* <ambientLight /> */}

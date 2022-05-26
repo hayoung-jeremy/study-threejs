@@ -26,71 +26,75 @@ const AvatarOnClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
 
       {/* body */}
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.F_Body_1.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_2.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_3.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_4.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_5.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_6.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_7.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_8.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_9.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_10.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_11.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_12.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_13.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_14.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_15.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_16.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_17.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_18.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_19.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_20.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_21.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_22.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_23.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_24.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_25.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_26.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_27.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_28.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_29.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_30.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_31.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_32.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_33.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_34.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_35.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_36.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_37.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_38.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_39.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_40.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_41.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_42.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_43.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_44.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_45.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_46.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_47.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_48.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_49.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_50.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_51.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_52.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_53.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_54.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_55.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_56.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_57.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_58.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_59.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_60.geometry} material={materials.NewMat01} />
-        <mesh geometry={nodes.F_Body_61.geometry} material={materials.NewMat01} />
+        <mesh geometry={nodes.F_Body_1.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_2.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_3.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_4.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_5.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_6.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_7.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_8.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_9.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_10.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_11.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_12.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_13.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_14.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_15.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_16.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_17.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_18.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_19.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_20.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_21.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_22.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_23.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_24.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_25.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_26.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_27.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_28.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_29.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_30.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_31.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_32.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_33.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_34.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_35.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_36.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_37.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_38.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_39.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_40.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_41.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_42.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_43.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_44.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_45.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_46.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_47.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_48.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_49.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_50.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_51.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_52.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_53.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_54.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_55.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_56.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_57.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_58.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_59.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_60.geometry} material={materials.NewMat01} castShadow />
+        <mesh geometry={nodes.F_Body_61.geometry} material={materials.NewMat01} castShadow />
       </group>
 
       {/* eyes */}
-      <mesh geometry={nodes.F_Whiteface_002_eye.geometry} material={materials.NewMat08} rotation={[-Math.PI / 2, 0, 0]} />
+      <mesh
+        geometry={nodes.F_Whiteface_002_eye.geometry}
+        material={materials.NewMat08}
+        rotation={[-Math.PI / 2, 0, 0]}
+      />
 
       {/* face */}
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -102,7 +106,12 @@ const AvatarOnClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
       </group>
 
       {/* hair */}
-      <mesh geometry={nodes.F_HAIR_1030000.geometry} material={materials.NewMat03} rotation={[-Math.PI / 2, 0, 0]} />
+      <mesh
+        geometry={nodes.F_HAIR_1030000.geometry}
+        material={materials.NewMat03}
+        rotation={[-Math.PI / 2, 0, 0]}
+        castShadow
+      />
 
       {/* dress */}
       {/* <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -118,9 +127,9 @@ const AvatarOnClothes = ({ ...props }: JSX.IntrinsicElements["group"]) => {
 
       {/* boots */}
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.F_PRD_21FW_SH002_1.geometry} material={materials.NewMat10} />
-        <mesh geometry={nodes.F_PRD_21FW_SH002_2.geometry} material={materials.NewMat10} />
-        <mesh geometry={nodes.F_PRD_21FW_SH002_3.geometry} material={materials.NewMat10} />
+        <mesh geometry={nodes.F_PRD_21FW_SH002_1.geometry} material={materials.NewMat10} castShadow />
+        <mesh geometry={nodes.F_PRD_21FW_SH002_2.geometry} material={materials.NewMat10} castShadow />
+        <mesh geometry={nodes.F_PRD_21FW_SH002_3.geometry} material={materials.NewMat10} castShadow />
       </group>
     </group>
   )
