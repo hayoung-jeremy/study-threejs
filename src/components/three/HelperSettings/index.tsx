@@ -4,8 +4,11 @@ import React, { useRef } from "react"
 import * as THREE from "three"
 import { CameraHelper } from "three"
 import { OrbitControls, PerspectiveCamera, Stats, useHelper } from "@react-three/drei"
+import { useFrame } from "@react-three/fiber"
 
 const HelperSettings = () => {
+  const vec = new THREE.Vector3()
+
   const camera = useRef<THREE.PerspectiveCamera>()
   useHelper(camera, CameraHelper)
 
@@ -14,22 +17,23 @@ const HelperSettings = () => {
 
   const spotLight = useRef<any>()
   useHelper(spotLight, THREE.SpotLightHelper, "cyan")
+
   const spotLight2 = useRef<any>()
   useHelper(spotLight2, THREE.SpotLightHelper, "red")
 
   const pointLight1 = useRef<any>()
   useHelper(pointLight1, THREE.PointLightHelper, 1, "red")
 
+  // useFrame(state => {
+  //   console.log(state)
+  //   // state.camera.lookAt(camera.current!.position)
+  //   state.camera.position.lerp(vec.set(0, 1, 6), 0.01)
+  // })
+
   return (
     <>
       {/* camera */}
-      <PerspectiveCamera
-        makeDefault
-        position={[0, 0, 5.6]}
-        // ref={camera}
-        rotation={[0, 0, 0]}
-        fov={40}
-      />
+      <PerspectiveCamera makeDefault position={[0, 0, 5.6]} ref={camera} rotation={[0, 0, 0]} fov={40} />
 
       {/* control */}
       <OrbitControls
