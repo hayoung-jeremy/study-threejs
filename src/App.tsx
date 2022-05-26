@@ -75,7 +75,7 @@ const App = () => {
             position={[0, -1.86, 0]}
             rotation={[0, 0, 0]}
           />
-          <Html position={[1, 1.5, 0]}>
+          {/* <Html position={[1, 1.5, 0]}>
             <aside className="w-[380px]">
               <div
                 className={cls(
@@ -86,7 +86,7 @@ const App = () => {
                 <a href="https://www.fendi.com/kr-ko/fendace">see collection</a>
               </div>
             </aside>
-          </Html>
+          </Html> */}
 
           <ContactShadows far={5} scale={10} width={1.5} height={1.2} opacity={0.8} blur={0.6} position={[0, -1.9, 0]} />
           <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>

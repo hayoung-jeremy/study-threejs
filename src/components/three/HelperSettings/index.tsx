@@ -3,12 +3,7 @@ import React, { useRef } from "react"
 // three
 import * as THREE from "three"
 import { CameraHelper } from "three"
-import {
-  OrbitControls,
-  PerspectiveCamera,
-  Stats,
-  useHelper,
-} from "@react-three/drei"
+import { OrbitControls, PerspectiveCamera, Stats, useHelper } from "@react-three/drei"
 
 const HelperSettings = () => {
   const camera = useRef<THREE.PerspectiveCamera>()
@@ -19,6 +14,8 @@ const HelperSettings = () => {
 
   const spotLight = useRef<any>()
   useHelper(spotLight, THREE.SpotLightHelper, "cyan")
+  const spotLight2 = useRef<any>()
+  useHelper(spotLight2, THREE.SpotLightHelper, "red")
 
   const pointLight1 = useRef<any>()
   useHelper(pointLight1, THREE.PointLightHelper, 1, "red")
@@ -41,33 +38,46 @@ const HelperSettings = () => {
         // maxPolarAngle={Math.PI}
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2.1}
-        minDistance={1} // 최대 얼만큼 zoom in 할 수 있는지
-        maxDistance={8} // 최대 얼만큼 zoom out 할 수 있는지
+        // minDistance={1} // 최대 얼만큼 zoom in 할 수 있는지
+        // maxDistance={8} // 최대 얼만큼 zoom out 할 수 있는지
       />
 
       {/* light */}
-      <ambientLight intensity={0.15} />
-      {/* <directionalLight
-        position={[1, 3, 1.8]}
-        intensity={0.5}
+      <ambientLight intensity={0.05} />
+      <directionalLight
+        position={[1.4, 1.6, 4.1]}
+        intensity={0.15}
         // ref={directionalLight}
         // color="white"
-      /> */}
+      />
 
-      {/* <pointLight
-        position={[1, 3, 2]}
-        ref={pointLight1}
-        color="#fff000"
-        intensity={0.2}
-      /> */}
+      <pointLight
+        position={[0.3, 1.35, 0.8]}
+        // ref={pointLight1}
+        // color="#fff000"
+        intensity={0.525}
+        castShadow={false}
+      />
 
       <spotLight
         // ref={spotLight}
-        position={[1.5, 1.6, 4.3]}
+        position={[1.4, 2.6, 5]}
         // color="red"
-        intensity={0.37}
-        scale={0.8}
-        angle={0.5}
+        distance={120}
+        // penumbra={15}
+        decay={1}
+        intensity={0.53}
+        scale={0.05}
+        angle={0.35}
+        castShadow
+      />
+      <spotLight
+        // ref={spotLight2}
+        position={[-1.3, 2.85, -3.3]}
+        // color="red"
+        intensity={0.5}
+        scale={1.5}
+        angle={0.8}
         castShadow
       />
 
