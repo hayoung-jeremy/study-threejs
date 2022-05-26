@@ -55,10 +55,10 @@ const HelperSettings = () => {
       /> */}
 
       {/* <pointLight
-        position={[5, 0, -1]}
+        position={[1, 3, 2]}
         ref={pointLight1}
-        color="red"
-        intensity={1}
+        color="#fff000"
+        intensity={0.2}
       /> */}
 
       <spotLight

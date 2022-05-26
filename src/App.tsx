@@ -3,17 +3,6 @@ import { Suspense, useRef, useState } from "react"
 
 // three
 import { Canvas } from "@react-three/fiber"
-
-// custom
-import { Button, Layout } from "./components/ui"
-import { CardPreviewContainer, ProductGrid } from "./components/ui/productUI"
-import {
-  GltfModel,
-  PFPCard,
-  MagicMirror,
-  HelperSettings,
-} from "./components/three"
-import { availableImgURL, availableColor } from "./data/availableData"
 import {
   Center,
   ContactShadows,
@@ -26,6 +15,12 @@ import {
   useHelper,
 } from "@react-three/drei"
 import { CameraHelper } from "three"
+
+// custom
+import { Button, Layout } from "./components/ui"
+import { CardPreviewContainer, ProductGrid } from "./components/ui/productUI"
+import { GltfModel, PFPCard, MagicMirror, HelperSettings, AvatarOnClothes, Dress } from "./components/three"
+import { availableImgURL, availableColor } from "./data/availableData"
 import { cls } from "./utils/utils"
 
 const App = () => {
@@ -61,10 +56,23 @@ const App = () => {
             // preset={"studio"}
             // ground={{ height: 5, radius: 40, scale: 10 }}
           /> */}
-          <GltfModel
+          {/* <GltfModel
             scale={0.02}
             // enableZoom={false}
-            position={[0, -2, 0]}
+            position={[2, -2, 0]}
+            rotation={[0, 0, 0]}
+          /> */}
+
+          <AvatarOnClothes
+            scale={0.02}
+            // enableZoom={false}
+            position={[0, -1.86, 0]}
+            rotation={[0, 0, 0]}
+          />
+          <Dress
+            scale={0.02}
+            // enableZoom={false}
+            position={[0, -1.86, 0]}
             rotation={[0, 0, 0]}
           />
           <Html position={[1, 1.5, 0]}>
@@ -79,29 +87,9 @@ const App = () => {
               </div>
             </aside>
           </Html>
-          <Html>
-            <div className="w-48 absolute top-[-450px] left-[-940px]">
-              <img
-                className="w-full"
-                src="/img/fendace-ss22-logo-data.webp"
-                alt="fendace logo"
-              />
-            </div>
-          </Html>
-          <ContactShadows
-            far={5}
-            scale={10}
-            width={1.5}
-            height={1.2}
-            opacity={0.8}
-            blur={0.6}
-            position={[0, -1.9, 0]}
-          />
-          <mesh
-            scale={[2, 3, 1]}
-            position={[0, -2, 0]}
-            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-          >
+
+          <ContactShadows far={5} scale={10} width={1.5} height={1.2} opacity={0.8} blur={0.6} position={[0, -1.9, 0]} />
+          <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
             <planeGeometry args={[20, 20]} />
 
             <MeshReflectorMaterial

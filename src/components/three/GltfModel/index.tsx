@@ -6,7 +6,8 @@ import { TextureLoader } from "three"
 
 const GltfModel = (props: any) => {
   // const gltf = useLoader(GLTFLoader, "/char/adam/adamHead.gltf")
-  const gltf = useLoader(GLTFLoader, "/char/avatar/0525.glb")
+  const gltf = useLoader(GLTFLoader, "/char/avatar/naked.glb")
+  // const gltf = useLoader(GLTFLoader, "/char/avatar_clothes/clothes.glb")
   // const fbx = useFBX("/char/avatar/WEB_AVATAR_TEST.FBX")
   //   console.log("gltf >>>>>>>>>>>>>>", gltf)
   //   console.log("gltf.scene >>>>>>>>>>>>>>", gltf.scene)
@@ -31,12 +32,13 @@ const GltfModel = (props: any) => {
   const [isHovered, setIsHovered] = useState(true)
 
   const onMaterialOver = (e: any) => {
-    console.log(e.object)
-    // e.object.material.emissive.r = 1
+    // console.log(e.object)
+    e.object.material.emissive.r = 0.2
+    // console.log(gltf.nodes[e.object.name])
   }
 
   const onMaterialOut = (e: any) => {
-    // e.object.material.emissive.r = 0
+    e.object.material.emissive.r = 0
   }
 
   return (
@@ -61,7 +63,7 @@ const GltfModel = (props: any) => {
         // onPointerEnter={(e: any) => console.log("enter")}
         // onPointerOut={(e: any) => console.log("out")}
         // onContextMenu={(e: any) => console.log("context menu")}
-        // onPointerMissed={() => console.log("missed")}
+        onPointerMissed={() => console.log("missed")}
         onUpdate={(self: any) => console.log("props have been updated", self)}
         // rotation={isHovered ? [0, Math.PI, 0] : [0, 0, 0]}
       />
