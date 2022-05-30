@@ -1,5 +1,5 @@
 // react
-import { Suspense, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 
 // three
 import * as THREE from "three"
@@ -37,112 +37,123 @@ import { availableImgURL, availableColor } from "./data/availableData"
 import { cls } from "./utils/utils"
 
 const App = () => {
-  const [cardColor, setCardColor] = useState("#000")
-  const [imgURL, setImgURL] = useState("img/about-bg-character-01.png")
-  const [isTabSelected, setIsTabSelected] = useState(0)
-  const [isColorSelected, setIsColorSelected] = useState(0)
-  const [isImgSelected, setIsImgSelected] = useState(0)
-
   const [toggleHair, setToggleHair] = useState(true)
   const [toggleDress, setToggleDress] = useState(true)
   const [toggleBoots, setToggleBoots] = useState(true)
 
-  // const camera = useRef<THREE.PerspectiveCamera>()
-  // useHelper(camera, CameraHelper)
-
   const tabMenu = [{ menuTitle: "3D model" }, { menuTitle: "character image" }]
+
+  const drawingCanvasRef = useRef<HTMLCanvasElement>(null)
+
+  // drawing canvas
+  useEffect(() => {
+    const canvas = drawingCanvasRef.current
+    const context = canvas?.getContext("2d")
+    context?.fillRect(0, 0, 50, 50)
+  }, [])
+
   return (
     <main
       className={cls(
-        "w-screen h-screen flex justify-center items-center"
+        "w-screen h-screen grid grid-cols-[2fr_1fr]"
         // "bg-[url('img/bg_stage.jpg')] bg-[length:50%] bg-bottom bg-no-repeat"
       )}
     >
-      <Canvas
-        // gl={{ toneMappingExposure: 0.4 }}
-        shadows
-        // onCreated={({ gl }) => {
-        //   gl.shadowMap.enabled = true
-        //   gl.shadowMap.type = THREE.PCFSoftShadowMap
-        // }}
-        // className={cls("backdrop-blur-[4px] bg-[#f9f9f9] relative", "bg-gradient-to-t from-[#ccc] via-[#eee] to-[#f9f9f9]")}
-      >
-        <Suspense fallback={null}>
-          {/* <GltfModel
-            scale={0.02}
-            // enableZoom={false}
-            position={[2, -2, 0]}
-            rotation={[0, 0, 0]}
-          /> */}
+      <aside className="h-full grid grid-rows-2">
+        <div>
+          <Canvas>
+            <Suspense fallback={null}>
+              <GltfModel
+                scale={2}
+                // enableZoom={false}
+                position={[0, -2.2, 0]}
+                rotation={[0, 0, 0]}
+              />
+            </Suspense>
+            <HelperSettings />
+          </Canvas>
+        </div>
+        <div>
+          <canvas ref={drawingCanvasRef}></canvas>
+        </div>
+      </aside>
 
-          <AvatarWithOutClothes scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />
-          {toggleHair && <AvatarHair scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
-          {toggleBoots && <AvatarBoots scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
-          {toggleDress && (
-            <AvatarDress
-              scale={0.02}
-              // enableZoom={false}
-              position={[0, -1.86, 0]}
-              rotation={[0, 0, 0]}
-              castShadow
-              receiveShadow
-            />
-          )}
-          <Html position={[1, 1.5, 0]}>
-            <aside className="w-[380px] flex flex-col gap-2">
-              <div
-                className={cls(
-                  "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
-                  "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
-                )}
-                onClick={() => setToggleHair(!toggleHair)}
-              >
-                {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
-                toggle hair
-              </div>
-              <div
-                className={cls(
-                  "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
-                  "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
-                )}
-                onClick={() => setToggleDress(!toggleDress)}
-              >
-                {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
-                toggle dress
-              </div>
-              <div
-                className={cls(
-                  "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
-                  "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
-                )}
-                onClick={() => setToggleBoots(!toggleBoots)}
-              >
-                {/* <a href="https://www.fendi.com/kr-ko/fendace">see collection</a> */}
-                toggle boots
-              </div>
-            </aside>
-          </Html>
+      <div className="h-full">
+        <Canvas
+          // gl={{ toneMappingExposure: 0.4 }}
+          shadows
+          // onCreated={({ gl }) => {
+          //   gl.shadowMap.enabled = true
+          //   gl.shadowMap.type = THREE.PCFSoftShadowMap
+          // }}
+          // className={cls("backdrop-blur-[4px] bg-[#f9f9f9] relative", "bg-gradient-to-t from-[#ccc] via-[#eee] to-[#f9f9f9]")}
+        >
+          <Suspense fallback={null}>
+            <AvatarWithOutClothes scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />
+            {toggleHair && <AvatarHair scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
+            {toggleBoots && <AvatarBoots scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
+            {toggleDress && (
+              <AvatarDress
+                scale={0.02}
+                // enableZoom={false}
+                position={[0, -1.86, 0]}
+                rotation={[0, 0, 0]}
+                castShadow
+                receiveShadow
+              />
+            )}
+            <Html position={[-1, 1.5, 0]}>
+              <aside className="w-[380px] flex flex-col gap-2">
+                <div
+                  className={cls(
+                    "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
+                    "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
+                  )}
+                  onClick={() => setToggleHair(!toggleHair)}
+                >
+                  toggle hair
+                </div>
+                <div
+                  className={cls(
+                    "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
+                    "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
+                  )}
+                  onClick={() => setToggleDress(!toggleDress)}
+                >
+                  toggle dress
+                </div>
+                <div
+                  className={cls(
+                    "cursor-pointer w-fit border backdrop-blur-sm text-[#333] bg-[rgba(255,255,255,0.4)] border-[rgba(0,0,0,0.2)] px-5 py-2 rounded-lg font-semibold transition-all select-none",
+                    "hover:border-[#7144FF88] hover:bg-[#7144FF11]"
+                  )}
+                  onClick={() => setToggleBoots(!toggleBoots)}
+                >
+                  toggle boots
+                </div>
+              </aside>
+            </Html>
 
-          {/* <ambientLight intensity={0.1} />
+            {/* <ambientLight intensity={0.1} />
           <directionalLight intensity={0.5} castShadow shadow-mapSize-height={512} shadow-mapSize-width={512} /> */}
-          {/* <Box castShadow receiveShadow position={[0, 0.5, 0]}>
+            {/* <Box castShadow receiveShadow position={[0, 0.5, 0]}>
             <meshStandardMaterial attach="material" color="white" />
           </Box> */}
-          <Plane receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]} args={[1000, 1000]}>
-            <meshStandardMaterial attach="material" color="white" transparent opacity={0.4} />
-          </Plane>
-          <fog attach="fog" args={["white", 0, 1000]} />
-          <ContactShadows
-            far={3}
-            scale={10}
-            width={1.5}
-            height={1.2}
-            opacity={0.6}
-            blur={0.8}
-            position={[0, -1.89, 0]}
-            // receiveShadow
-          />
-          {/* <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} receiveShadow>
+            <Plane receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]} args={[1000, 1000]}>
+              <meshStandardMaterial attach="material" color="white" transparent opacity={0.4} />
+            </Plane>
+            <fog attach="fog" args={["white", 0, 1000]} />
+            <ContactShadows
+              far={3}
+              scale={10}
+              width={1.5}
+              height={1.2}
+              opacity={0.6}
+              blur={0.8}
+              position={[0, -1.89, 0]}
+              // receiveShadow
+            />
+            {/* <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} receiveShadow>
             <planeGeometry args={[100, 100]} />
 
             <MeshReflectorMaterial
@@ -166,14 +177,15 @@ const App = () => {
             />
           </mesh> */}
 
-          {/* settings */}
-          {/* <PerspectiveCamera position={[0, Math.PI, 0]} /> */}
-          {/* <ambientLight /> */}
-          {/* <OrbitControls /> */}
-          {/* <gridHelper /> */}
-        </Suspense>
-        <HelperSettings />
-      </Canvas>
+            {/* settings */}
+            {/* <PerspectiveCamera position={[0, Math.PI, 0]} /> */}
+            {/* <ambientLight /> */}
+            {/* <OrbitControls /> */}
+            {/* <gridHelper /> */}
+          </Suspense>
+          <HelperSettings />
+        </Canvas>
+      </div>
     </main>
     // <Layout>
     //   <ProductGrid>
