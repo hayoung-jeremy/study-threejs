@@ -20,8 +20,6 @@ const MAX_CANVAS_WIDTH = 500
 const MAX_CANVAS_HEIGHT = 500
 
 const EditorCanvas = ({ source }: Props) => {
-  const gltf = useLoader(GLTFLoader, "/jar/scene.gltf")
-
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null)
   const textureRef = useRef<THREE.CanvasTexture>(null)
 
@@ -45,10 +43,8 @@ const EditorCanvas = ({ source }: Props) => {
     }
   }, [])
 
-  console.log("gltf", gltf)
-
   return (
-    <div className="bg-[rgba(0,0,0,.6)] w-screen h-screen flex items-center justify-center absolute top-0 left-0 z-[99999999]">
+    <div className="w-fit h-fit flex items-end justify-end absolute bottom-0 right-0 z-[99999999]">
       <main className="grid grid-cols-2 bg-white">
         <div>
           <Canvas>
