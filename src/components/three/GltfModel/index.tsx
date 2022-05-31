@@ -1,5 +1,7 @@
-import React, { Suspense, useState } from "react"
-import { useLoader } from "@react-three/fiber"
+import React, { Suspense, useEffect, useState } from "react"
+
+import * as THREE from "three"
+import { useFrame, useLoader, useThree } from "@react-three/fiber"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { TextureLoader } from "three"
 
@@ -11,8 +13,6 @@ const GltfModel = (props: any) => {
     "/jar/textures/ml.001_baseColor.jpeg",
   ])
 
-  console.log(texture)
-
   // console.log(gltf)
 
   return (
@@ -20,7 +20,7 @@ const GltfModel = (props: any) => {
       <primitive
         object={gltf.scene}
         {...props}
-        map={texture}
+        // map={texture}
         // normalMap={normalMap}
         // roughnessMap={roughnessMap}
         // metalnessMap={metalnessMap}
@@ -40,6 +40,7 @@ const GltfModel = (props: any) => {
         onPointerMissed={() => console.log("missed")}
         onUpdate={(self: any) => console.log("props have been updated", self)}
       />
+      <canvasTexture ref={props.textureRef} attach="map" image={props.canvasRef.current} />
     </Suspense>
   )
 }

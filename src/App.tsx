@@ -32,6 +32,7 @@ import {
   AvatarDress,
   AvatarHair,
   AvatarBoots,
+  EditorCanvas,
 } from "./components/three"
 import { availableImgURL, availableColor } from "./data/availableData"
 import { cls } from "./utils/utils"
@@ -43,15 +44,6 @@ const App = () => {
 
   const tabMenu = [{ menuTitle: "3D model" }, { menuTitle: "character image" }]
 
-  const drawingCanvasRef = useRef<HTMLCanvasElement>(null)
-
-  // drawing canvas
-  useEffect(() => {
-    const canvas = drawingCanvasRef.current
-    const context = canvas?.getContext("2d")
-    context?.fillRect(0, 0, 50, 50)
-  }, [])
-
   return (
     <main
       className={cls(
@@ -59,26 +51,8 @@ const App = () => {
         // "bg-[url('img/bg_stage.jpg')] bg-[length:50%] bg-bottom bg-no-repeat"
       )}
     >
-      <aside className="h-full grid grid-rows-2">
-        <div>
-          <Canvas>
-            <Suspense fallback={null}>
-              <GltfModel
-                scale={2}
-                // enableZoom={false}
-                position={[0, -2.2, 0]}
-                rotation={[0, 0, 0]}
-              />
-            </Suspense>
-            <HelperSettings />
-          </Canvas>
-        </div>
-        <div>
-          <canvas ref={drawingCanvasRef}></canvas>
-        </div>
-      </aside>
-
-      <div className="h-full">
+      <EditorCanvas source="/char/avatar_clothes/textures/F_PRD_21FW_SH002_D_mock.png" />
+      <div className="">
         <Canvas
           // gl={{ toneMappingExposure: 0.4 }}
           shadows
