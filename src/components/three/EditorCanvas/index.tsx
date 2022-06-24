@@ -7,6 +7,13 @@ import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber"
 import HelperSettings from "../HelperSettings"
 import { Center, OrbitControls, PerspectiveCamera } from "@react-three/drei"
 import TestBoots from "../TestBoots"
+import {
+  Body,
+  OutsoleOpt1,
+  OutsoleOpt2,
+  OutsoleOpt3,
+  OutsoleOpt4,
+} from "../HausBoots"
 
 interface Props {
   source: string
@@ -47,18 +54,23 @@ const EditorCanvas = ({ source }: Props) => {
 
   return (
     <div className="w-fit h-fit flex items-end justify-end absolute bottom-0 right-0 z-[99999999]">
-      <main className="grid grid-cols-2 bg-white">
-        <div>
+      <main className="w-screen h-screen bg-white">
+        <div className="w-full h-full">
           <Canvas>
             <Suspense fallback={null}>
               {drawingCanvasRef && (
                 <Center>
-                  <TestBoots
+                  {/* <TestBoots
                     scale={0.015}
                     position={[0, 0, 0]}
                     rotation={[0, -Math.PI / 8, 0]}
                     texture={drawingCanvasRef}
-                  />
+                  /> */}
+                  <Body scale={0.01} />
+                  <OutsoleOpt1 scale={0.01} position={[0, 0, 0]} />
+                  {/* <OutsoleOpt2 scale={0.01} position={[0, 0, 0]} /> */}
+                  {/* <OutsoleOpt3 scale={0.01} position={[0, 0, 0]} /> */}
+                  {/* <OutsoleOpt4 scale={0.01} position={[0, 0, 0]} /> */}
                 </Center>
               )}
             </Suspense>
@@ -96,14 +108,14 @@ const EditorCanvas = ({ source }: Props) => {
             <gridHelper />
           </Canvas>
         </div>
-        <div>
+        {/* <div>
           <canvas
             width={MAX_CANVAS_WIDTH}
             height={MAX_CANVAS_HEIGHT}
             ref={drawingCanvasRef}
             draggable={true}
           ></canvas>
-        </div>
+        </div> */}
       </main>
     </div>
   )
