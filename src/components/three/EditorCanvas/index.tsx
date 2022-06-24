@@ -2,14 +2,10 @@ import React, { Suspense, useEffect, useRef } from "react"
 
 // three
 import * as THREE from "three"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber"
 
-import GltfModel from "../GltfModel"
 import HelperSettings from "../HelperSettings"
 import { Center, OrbitControls, PerspectiveCamera } from "@react-three/drei"
-import { MeshStandardMaterial } from "three"
-import AvatarBoots from "../AvatarBoots"
 import TestBoots from "../TestBoots"
 
 interface Props {
@@ -32,9 +28,15 @@ const EditorCanvas = ({ source }: Props) => {
     const image = new Image()
     image.src = source
     image.onload = () => {
-      const width = image.width > image.height ? MAX_CANVAS_WIDTH : (image.width * MAX_CANVAS_HEIGHT) / image.height
+      const width =
+        image.width > image.height
+          ? MAX_CANVAS_WIDTH
+          : (image.width * MAX_CANVAS_HEIGHT) / image.height
 
-      const height = image.width > image.height ? (image.height * MAX_CANVAS_WIDTH) / image.width : MAX_CANVAS_HEIGHT
+      const height =
+        image.width > image.height
+          ? (image.height * MAX_CANVAS_WIDTH) / image.width
+          : MAX_CANVAS_HEIGHT
 
       context?.drawImage(image, 0, 0, width, height)
       if (context && textureRef.current) {
@@ -51,12 +53,12 @@ const EditorCanvas = ({ source }: Props) => {
             <Suspense fallback={null}>
               {drawingCanvasRef && (
                 <Center>
-                  <TestBoots scale={0.05} position={[0, 0, 0]} rotation={[0, 0, 0]} texture={drawingCanvasRef} />
-                  {/* <primitive object={gltf.scene} scale={2} position={[0, 0, 0]} rotation={[0, 0, 0]}>
-                    <meshStandardMaterial>
-                      <canvasTexture ref={textureRef} attach="map" image={drawingCanvasRef.current} />
-                    </meshStandardMaterial>
-                  </primitive> */}
+                  <TestBoots
+                    scale={0.015}
+                    position={[0, 0, 0]}
+                    rotation={[0, -Math.PI / 8, 0]}
+                    texture={drawingCanvasRef}
+                  />
                 </Center>
               )}
             </Suspense>
@@ -65,18 +67,13 @@ const EditorCanvas = ({ source }: Props) => {
             <PerspectiveCamera
               makeDefault
               position={[0, 0, 2]}
-              // ref={camera}
               rotation={[0, 0, 0]}
-              fov={50}
-              // dispose={null}
-              isObject3D
+              fov={20}
             />
             <OrbitControls />
             <ambientLight intensity={0.05} />
             <spotLight
-              // ref={spotLight2}
               position={[-1.3, 2.85, -3.3]}
-              // color="red"
               intensity={0.5}
               scale={1.5}
               angle={0.8}
@@ -95,17 +92,17 @@ const EditorCanvas = ({ source }: Props) => {
               angle={0.35}
               castShadow
             />
-            <pointLight
-              position={[0.3, 1.35, 0.8]}
-              // ref={pointLight1}
-              // color="#fff000"
-              intensity={0.525}
-            />
-            {/* <gridHelper /> */}
+            <pointLight position={[0.3, 1.35, 0.8]} intensity={0.525} />
+            <gridHelper />
           </Canvas>
         </div>
         <div>
-          <canvas width={MAX_CANVAS_WIDTH} height={MAX_CANVAS_HEIGHT} ref={drawingCanvasRef}></canvas>
+          <canvas
+            width={MAX_CANVAS_WIDTH}
+            height={MAX_CANVAS_HEIGHT}
+            ref={drawingCanvasRef}
+            draggable={true}
+          ></canvas>
         </div>
       </main>
     </div>

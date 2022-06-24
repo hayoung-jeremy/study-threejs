@@ -38,38 +38,12 @@ import {
 import { availableImgURL, availableColor } from "./data/availableData"
 import { cls } from "./utils/utils"
 
-const MAX_CANVAS_WIDTH = 500
-const MAX_CANVAS_HEIGHT = 500
-
 const App = () => {
   const [toggleHair, setToggleHair] = useState(true)
   const [toggleDress, setToggleDress] = useState(true)
   const [toggleBoots, setToggleBoots] = useState(true)
 
   const tabMenu = [{ menuTitle: "3D model" }, { menuTitle: "character image" }]
-
-  const drawingCanvasRef = useRef<HTMLCanvasElement>(null)
-  const textureRef = useRef<THREE.CanvasTexture>(null)
-
-  // drawing canvas
-  useEffect(() => {
-    const canvas = drawingCanvasRef.current
-    const context = canvas?.getContext("2d")
-
-    // load texture image
-    const image = new Image()
-    image.src = "/char/avatar_clothes/textures/F_PRD_21FW_SH002_D_test.png"
-    image.onload = () => {
-      const width = image.width > image.height ? MAX_CANVAS_WIDTH : (image.width * MAX_CANVAS_HEIGHT) / image.height
-
-      const height = image.width > image.height ? (image.height * MAX_CANVAS_WIDTH) / image.width : MAX_CANVAS_HEIGHT
-
-      context?.drawImage(image, 0, 0, width, height)
-      if (context && textureRef.current) {
-        textureRef.current.needsUpdate = true
-      }
-    }
-  }, [])
 
   return (
     <main
@@ -78,12 +52,10 @@ const App = () => {
         // "bg-[url('img/bg_stage.jpg')] bg-[length:50%] bg-bottom bg-no-repeat"
       )}
     >
-      {/* <EditorCanvas source="/char/avatar_clothes/textures/F_PRD_21FW_SH002_D_mock.png" /> */}
+      <EditorCanvas source="/char/avatar_clothes/textures/F_PRD_21FW_SH002_D_test.png" />
       <div className="w-screen h-screen">
-        <div className="w-[500px] absolute top-0 left-0 z-[9999999999]">
-          <canvas width={MAX_CANVAS_WIDTH} height={MAX_CANVAS_HEIGHT} ref={drawingCanvasRef}></canvas>
-        </div>
         <Canvas
+          // frameloop="demand"
           // gl={{ toneMappingExposure: 0.4 }}
           shadows
           // onCreated={({ gl }) => {
@@ -96,19 +68,11 @@ const App = () => {
             <AvatarWithOutClothes scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />
 
             {toggleHair && <AvatarHair scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
-            {toggleBoots && <AvatarBoots scale={0.02} position={[0.4, -1.86, 0]} rotation={[0, 0, 0]} />}
+            {toggleBoots && <AvatarBoots scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
             {toggleDress && (
               <AvatarDress scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} castShadow receiveShadow />
             )}
-            <TestBoots
-              scale={0.02}
-              // enableZoom={false}
-              position={[0, -1.86, 0]}
-              rotation={[0, 0, 0]}
-              castShadow
-              receiveShadow
-              texture={drawingCanvasRef}
-            />
+
             <Html position={[-1, 1.5, 0]}>
               <aside className="w-[380px] flex flex-col gap-2">
                 <div
