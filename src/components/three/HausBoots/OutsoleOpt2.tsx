@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
 export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>(null)
   const { nodes, materials } = useGLTF(
-    "char/haus//NFT_BOOTS_OP2.glb"
+    "char/haus/NFT_BOOTS_OP2.glb"
   ) as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
@@ -27,32 +27,32 @@ export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
         castShadow
         receiveShadow
         geometry={nodes.OP2_OUTSOLE_01.geometry}
-        material={materials.NFT_BOOTS_OP2}
+        material={materials.OP2_OUTSOLE_01}
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP2_OUTSOLE_02.geometry}
-        material={materials.NFT_BOOTS_OP2}
+        material={materials.OP2_OUTSOLE_02}
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP2_OUTSOLE_03.geometry}
-        material={materials.NFT_BOOTS_OP2}
+        material={materials.OP2_OUTSOLE_03}
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP2_OUTSOLE_04.geometry}
-        material={materials.NFT_BOOTS_OP2}
+        material={materials.OP2_OUTSOLE_04}
         rotation={[-Math.PI / 2, 0, 0]}
       />
     </group>
   )
 }
 
-useGLTF.preload("char/haus//NFT_BOOTS_OP2.glb")
+useGLTF.preload("char/haus/NFT_BOOTS_OP2.glb")

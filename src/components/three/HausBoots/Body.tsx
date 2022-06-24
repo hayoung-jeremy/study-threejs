@@ -16,57 +16,63 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function Body({ ...props }: JSX.IntrinsicElements["group"]) {
+export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>(null)
   const { nodes, materials } = useGLTF(
-    "char/haus/NFT_BOOTS_OP1.glb"
+    "char/haus//NFT_BOOTS_BODY.glb"
   ) as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
-      {/* 옆면 */}
+      {/* Quarter */}
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP1_BASE_01.geometry}
-        material={materials.NFT_BOOTS_OP1}
+        material={materials.OP1_BASE_01}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color="red"
+        material-color="#FAD4D4"
       />
-      {/* 앞면 */}
+
+      {/* Vamp */}
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP1_BASE_02.geometry}
-        material={materials.NFT_BOOTS_OP1}
+        material={materials.OP1_BASE_02}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color="#FFF2F2"
       />
-      {/* 신발끈 */}
+      {/* Lace */}
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP1_BASE_03.geometry}
-        material={materials.NFT_BOOTS_OP1}
+        material={materials.OP1_BASE_03}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color="white"
+        material-color="#EF9F9F"
       />
-      {/* 발목 뒤 */}
+
+      {/* Back Counter */}
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP1_BASE_04.geometry}
-        material={materials.NFT_BOOTS_OP1}
+        material={materials.OP1_BASE_04}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color="#EF9F9F"
       />
-      {/* 뒷 꼬랑지 */}
+
+      {/* Pull loops */}
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.OP1_BASE_05.geometry}
-        material={materials.NFT_BOOTS_OP1}
+        material={materials.OP1_BASE_05}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color="#EF9F9F"
       />
     </group>
   )
 }
 
-useGLTF.preload("char/haus/NFT_BOOTS_OP1.glb")
+useGLTF.preload("char/haus//NFT_BOOTS_BODY.glb")

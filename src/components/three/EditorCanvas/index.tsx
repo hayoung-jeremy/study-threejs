@@ -1,11 +1,16 @@
-import React, { Suspense, useEffect, useRef } from "react"
+import React, { Suspense, useEffect, useRef, useState } from "react"
 
 // three
 import * as THREE from "three"
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber"
 
 import HelperSettings from "../HelperSettings"
-import { Center, OrbitControls, PerspectiveCamera } from "@react-three/drei"
+import {
+  Center,
+  Html,
+  OrbitControls,
+  PerspectiveCamera,
+} from "@react-three/drei"
 import TestBoots from "../TestBoots"
 import {
   Body,
@@ -14,6 +19,7 @@ import {
   OutsoleOpt3,
   OutsoleOpt4,
 } from "../HausBoots"
+import { cls } from "../../../utils/utils"
 
 interface Props {
   source: string
@@ -25,6 +31,8 @@ const MAX_CANVAS_HEIGHT = 500
 const EditorCanvas = ({ source }: Props) => {
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null)
   const textureRef = useRef<THREE.CanvasTexture>(null)
+
+  const [outsoleOption, setOutsoleOption] = useState(0)
 
   // drawing canvas
   useEffect(() => {
@@ -67,10 +75,70 @@ const EditorCanvas = ({ source }: Props) => {
                     texture={drawingCanvasRef}
                   /> */}
                   <Body scale={0.01} />
-                  <OutsoleOpt1 scale={0.01} position={[0, 0, 0]} />
-                  {/* <OutsoleOpt2 scale={0.01} position={[0, 0, 0]} /> */}
-                  {/* <OutsoleOpt3 scale={0.01} position={[0, 0, 0]} /> */}
-                  {/* <OutsoleOpt4 scale={0.01} position={[0, 0, 0]} /> */}
+                  {outsoleOption === 0 && (
+                    <OutsoleOpt1 scale={0.01} position={[0, 0, 0]} />
+                  )}
+                  {outsoleOption === 1 && (
+                    <OutsoleOpt2 scale={0.01} position={[0, 0, 0]} />
+                  )}
+                  {outsoleOption === 2 && (
+                    <OutsoleOpt3 scale={0.01} position={[0, 0, 0]} />
+                  )}
+                  {outsoleOption === 3 && (
+                    <OutsoleOpt4 scale={0.01} position={[0, 0, 0]} />
+                  )}
+
+                  <Html position={[0.3, 0.4, 0]}>
+                    <aside className="w-[200px] flex flex-col gap-3 select-none">
+                      <p className="font-medium text-xl">Outsole Options</p>
+                      <ul className="flex flex-col gap-2">
+                        <li
+                          onClick={() => setOutsoleOption(0)}
+                          className={cls(
+                            "flex items-center justify-center",
+                            "transition-all backdrop-blur-md rounded-lg py-2 cursor-pointer",
+                            "border border-slate-300 text-[#333]",
+                            "hover:border-[rgba(255,149,223,0.8)] hover:text-[rgba(250,92,171,0.8)]"
+                          )}
+                        >
+                          Outsole Option 1
+                        </li>
+                        <li
+                          onClick={() => setOutsoleOption(1)}
+                          className={cls(
+                            "flex items-center justify-center",
+                            "transition-all backdrop-blur-sm rounded-lg py-2 cursor-pointer",
+                            "border border-slate-300 text-[#333]",
+                            "hover:border-[rgba(255,149,223,0.8)] hover:text-[rgba(250,92,171,0.8)]"
+                          )}
+                        >
+                          Outsole Option 2
+                        </li>
+                        <li
+                          onClick={() => setOutsoleOption(2)}
+                          className={cls(
+                            "flex items-center justify-center",
+                            "transition-all backdrop-blur-sm rounded-lg py-2 cursor-pointer",
+                            "border border-slate-300 text-[#333]",
+                            "hover:border-[rgba(255,149,223,0.8)] hover:text-[rgba(250,92,171,0.8)]"
+                          )}
+                        >
+                          Outsole Option 3
+                        </li>
+                        <li
+                          onClick={() => setOutsoleOption(3)}
+                          className={cls(
+                            "flex items-center justify-center",
+                            "transition-all backdrop-blur-sm rounded-lg py-2 cursor-pointer",
+                            "border border-slate-300 text-[#333]",
+                            "hover:border-[rgba(255,149,223,0.8)] hover:text-[rgba(250,92,171,0.8)]"
+                          )}
+                        >
+                          Outsole Option 4
+                        </li>
+                      </ul>
+                    </aside>
+                  </Html>
                 </Center>
               )}
             </Suspense>
