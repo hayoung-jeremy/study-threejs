@@ -3,7 +3,14 @@ import React, { useRef } from "react"
 // three
 import * as THREE from "three"
 import { CameraHelper } from "three"
-import { OrbitControls, PerspectiveCamera, Stats, useHelper } from "@react-three/drei"
+import {
+  Environment,
+  Lightformer,
+  OrbitControls,
+  PerspectiveCamera,
+  Stats,
+  useHelper,
+} from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 
 const HelperSettings = () => {
@@ -33,21 +40,22 @@ const HelperSettings = () => {
   return (
     <>
       {/* camera */}
-      <PerspectiveCamera
+      {/* <PerspectiveCamera
         makeDefault
-        position={[0, 0, 5.6]}
+        position={[0, 1, 3]}
         // ref={camera}
         rotation={[0, 0, 0]}
         fov={40}
         // dispose={null}
         isObject3D
-      />
+      /> */}
 
       {/* control */}
       <OrbitControls
         // enableZoom={false}
         // minPolarAngle={Math.PI}
         // maxPolarAngle={Math.PI}
+        makeDefault
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2.1}
         minDistance={1} // 최대 얼만큼 zoom in 할 수 있는지
@@ -96,8 +104,8 @@ const HelperSettings = () => {
 
       {/* helper */}
       {/* <axesHelper /> */}
-      {/* <gridHelper /> */}
-      {/* <Stats /> */}
+      <gridHelper />
+      <Stats />
     </>
   )
 }

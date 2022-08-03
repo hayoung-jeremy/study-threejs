@@ -34,6 +34,9 @@ import {
   AvatarBoots,
   EditorCanvas,
   TestBoots,
+  RenaultCar,
+  AvatarContainer,
+  TestCar,
 } from "./components/three"
 import { availableImgURL, availableColor } from "./data/availableData"
 import { cls } from "./utils/utils"
@@ -42,6 +45,7 @@ const App = () => {
   const [toggleHair, setToggleHair] = useState(true)
   const [toggleDress, setToggleDress] = useState(true)
   const [toggleBoots, setToggleBoots] = useState(true)
+  const [cameraLookAtIndex, setCameraLookAtIndex] = useState(0)
 
   const tabMenu = [{ menuTitle: "3D model" }, { menuTitle: "character image" }]
 
@@ -52,9 +56,15 @@ const App = () => {
         // "bg-[url('img/bg_stage.jpg')] bg-[length:50%] bg-bottom bg-no-repeat"
       )}
     >
-      <EditorCanvas source="/char/avatar_clothes/textures/F_PRD_21FW_SH002_D_test.png" />
-      <div className="w-screen h-screen">
+      {/* <EditorCanvas source="/char/avatar_clothes/textures/F_PRD_21FW_SH002_D_test.png" /> */}
+      <div className="w-screen h-screen relative">
+        <button
+          onClick={() => setCameraLookAtIndex(2)}
+          className="absolute top-[40px] right-[40px] bg-[rgba(0,0,0,0.6)] w-12 h-12 rounded-full hover:bg-[rgba(0,0,0,0.5)] z-[9999999999]"
+        ></button>
         <Canvas
+          camera={{ position: [0, -10, 80], fov: 50 }}
+          dpr={[1, 2]}
           // frameloop="demand"
           // gl={{ toneMappingExposure: 0.4 }}
           shadows
@@ -65,15 +75,16 @@ const App = () => {
           // className={cls("backdrop-blur-[4px] bg-[#f9f9f9] relative", "bg-gradient-to-t from-[#ccc] via-[#eee] to-[#f9f9f9]")}
         >
           <Suspense fallback={null}>
-            <AvatarWithOutClothes scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />
+            <AvatarContainer cameraLookAtIndex={cameraLookAtIndex} />
 
-            {toggleHair && <AvatarHair scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
-            {toggleBoots && <AvatarBoots scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} />}
-            {toggleDress && (
-              <AvatarDress scale={0.02} position={[0, -1.86, 0]} rotation={[0, 0, 0]} castShadow receiveShadow />
-            )}
+            {/* <RenaultCar position={[0, -1.9, 0]} /> */}
+            {/* <TestCar
+              scale={0.01}
+              position={[-1.9, 0, 0]}
+              rotation={[0, Math.PI / 2, 0]}
+            /> */}
 
-            <Html position={[-1, 1.5, 0]}>
+            {/* <Html position={[-1, 1.5, 0]}>
               <aside className="w-[380px] flex flex-col gap-2">
                 <div
                   className={cls(
@@ -103,18 +114,28 @@ const App = () => {
                   toggle boots
                 </div>
               </aside>
-            </Html>
+            </Html> */}
 
             {/* <ambientLight intensity={0.1} />
           <directionalLight intensity={0.5} castShadow shadow-mapSize-height={512} shadow-mapSize-width={512} /> */}
             {/* <Box castShadow receiveShadow position={[0, 0.5, 0]}>
             <meshStandardMaterial attach="material" color="white" />
           </Box> */}
-            <Plane receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.9, 0]} args={[1000, 1000]}>
-              <meshStandardMaterial attach="material" color="white" transparent opacity={0.4} />
+            <Plane
+              receiveShadow
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[0, 0, 0]}
+              args={[1000, 1000]}
+            >
+              <meshStandardMaterial
+                attach="material"
+                color="#333"
+                transparent
+                opacity={0.6}
+              />
             </Plane>
             <fog attach="fog" args={["white", 0, 1000]} />
-            <ContactShadows
+            {/* <ContactShadows
               far={3}
               scale={10}
               width={1.5}
@@ -123,9 +144,7 @@ const App = () => {
               blur={0.8}
               position={[0, -1.89, 0]}
               // receiveShadow
-            />
-            {/* <mesh scale={[2, 3, 1]} position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} receiveShadow>
-            <planeGeometry args={[100, 100]} />
+            /> */}
 
             <MeshReflectorMaterial
               metalness={0.5}
@@ -144,9 +163,8 @@ const App = () => {
               reflectorOffset={0.01} // Offsets the virtual camera that projects the reflection. Useful when the reflective surface is some distance from the object's origin (default = 0)
               color="#555"
               transparent
-              opacity={0.02}
+              opacity={1}
             />
-          </mesh> */}
 
             {/* settings */}
             {/* <PerspectiveCamera position={[0, Math.PI, 0]} /> */}
